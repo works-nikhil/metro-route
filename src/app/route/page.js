@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useApiCache } from "@/lib/api-cache";
@@ -141,7 +141,7 @@ function transformApiResponse(apiData) {
   };
 }
 
-export default function RoutePage() {
+function RoutePageContent() {
   const searchParams = useSearchParams();
   const { fetchRoute, routesCache, getStationName } = useApiCache();
   const from = searchParams.get("from") || "";
@@ -387,5 +387,32 @@ export default function RoutePage() {
       </main>
 
     </div>
+  );
+}
+
+export default function RoutePage() {
+  return (
+    <Suspense fallback={
+      <div className={styles.page}>
+        <header className={styles.header}>
+          <Link href="/" className={styles.iconBtn} aria-label="Back">
+            <ArrowLeftIcon />
+          </Link>
+          <div className={styles.headerRoute}>
+            <span className={styles.headerStation}>...</span>
+            <span className={styles.headerArrow} aria-hidden><ArrowRightIcon /></span>
+            <span className={styles.headerStation}>...</span>
+          </div>
+          <div className={styles.iconBtn} />
+        </header>
+        <main className={styles.main}>
+          <div style={{ textAlign: "center", padding: "3rem", color: "#94a3b8" }}>
+            Loading route...
+          </div>
+        </main>
+      </div>
+    }>
+      <RoutePageContent />
+    </Suspense>
   );
 }
