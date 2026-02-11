@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useMemo, useState, useRef, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -184,7 +184,7 @@ function StationDropdown({
   );
 }
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const { fetchStations, stationsCache, setStationName } = useApiCache();
 
@@ -412,5 +412,46 @@ export default function Home() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className={styles.page}>
+        <header className={styles.header}>
+          <div className={styles.brand}>
+            <div className={styles.logoWrap}>
+              <Image
+                src={metroLogo}
+                alt="Namma Metro"
+                width={24}
+                height={24}
+                priority
+              />
+            </div>
+            <div>
+              <span className={styles.brandName}>Namma Metro</span>
+              <span className={styles.brandSub}>Bangalore</span>
+            </div>
+          </div>
+          <div className={styles.headerLogo}>
+            <Image src={nammaLogo} alt="Namma Metro" width={150} priority />
+          </div>
+          <div>
+            <button type="button" className={styles.menuBtn} aria-label="Menu">
+              <span className={styles.menuDots} />
+            </button>
+          </div>
+        </header>
+        <main className={styles.main}>
+          <div style={{ textAlign: "center", padding: "3rem", color: "#94a3b8" }}>
+            Loading...
+          </div>
+        </main>
+      </div>
+    }>
+      <HomeContent />
+    </Suspense>
   );
 }
