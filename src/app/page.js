@@ -125,7 +125,9 @@ function StationDropdown({
             if (isOpen) {
               setSearchTerm(e.target.value);
             } else {
-              onChange(e.target.value.toUpperCase());
+              // If dropdown is closed and user types, open it and start searching
+              onToggle();
+              setSearchTerm(e.target.value);
             }
           }}
           onFocus={() => {
@@ -137,7 +139,7 @@ function StationDropdown({
           placeholder={loading ? "Loading stations..." : placeholder}
           aria-label={inputId === "from" ? "From station" : "To station"}
           autoComplete="off"
-          readOnly={!isOpen}
+          inputMode="text"
         />
         <button
           type="button"
@@ -310,7 +312,7 @@ function HomeContent() {
         </p>
 
         <div className={styles.form}>
-          <div className={styles.inputGroup}>
+          <div className={`${styles.inputGroup} ${fromDropdownOpen ? styles.dropdownOpen : ""}`}>
             <label className={styles.label} htmlFor="from">
               Where are you starting from?
             </label>
@@ -345,7 +347,7 @@ function HomeContent() {
             <SwapIcon />
           </button>
 
-          <div className={styles.inputGroup}>
+          <div className={`${styles.inputGroup} ${toDropdownOpen ? styles.dropdownOpen : ""}`}>
             <label className={styles.label} htmlFor="to">
               Where are you going to?
             </label>
