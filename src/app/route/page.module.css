@@ -162,6 +162,10 @@
   background: #a855f7;
 }
 
+.linePill.lineYellow {
+  background: #eab308;
+}
+
 .lineDot {
   width: 0.5rem;
   height: 0.5rem;
@@ -180,128 +184,89 @@
 
 .timeline {
   position: relative;
+  max-width: 100%;
+  width: 100%;
+  padding-left: 1.875rem;
 }
 
-.timelineItem {
-  display: flex;
-  align-items: flex-start;
-}
-
-.timelineItem:not(:last-child) {
-  margin-bottom: 2rem;
-}
-
-.timelineTrack {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 1rem;
-  flex-shrink: 0;
-}
-
-.timelineDot {
-  width: 1.25rem;
-  height: 1.25rem;
-  border-radius: 50%;
-  border: 4px solid #0f172a;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+.timelineStep {
   position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  margin-bottom: 2.5rem;
 }
 
-.timelineDot.dotStart {
+.timelineStep:last-child {
+  margin-bottom: 0;
+}
+
+.lineSegment {
+  position: absolute;
+  left: -2rem;
+  top: 1.25rem;
+  width: 2px;
+  height: calc(2.5rem - 0.25rem);
+  z-index: 1;
+}
+
+.dot {
+  z-index: 2;
+}
+
+.dot {
+  position: absolute;
+  left: -2.5rem;
+  top: 0.25rem;
+  width: 1rem;
+  height: 1rem;
   background: #10b981;
-}
-
-.timelineDot.dotStart .dotInner {
-  width: 0.5rem;
-  height: 0.5rem;
   border-radius: 50%;
-  background: #fff;
+  box-shadow: 0 0 0.5rem rgba(16, 185, 129, 0.5);
+  z-index: 2;
 }
 
-.timelineDot.dotEnd {
-  width: 1.5rem;
-  height: 1.5rem;
-  background: #a855f7;
-  color: #fff;
-}
-
-.timelineDot.dotInterchange {
-  background: linear-gradient(to bottom right, #10b981, #a855f7);
-}
-
-.timelineDot.dotGreen {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-width: 2px;
-  background: #34d399;
-}
-
-.timelineDot.dotPurple {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-width: 2px;
-  background: #c084fc;
-}
-
-.timelineLine {
-  width: 4px;
-  flex: 1;
-  min-height: 4rem;
-  margin-top: 0.25rem;
-}
-
-.timelineLine.lineGreen {
+.dot.dotGreen {
   background: #10b981;
+  box-shadow: 0 0 0.5rem rgba(16, 185, 129, 0.5);
 }
 
-.timelineLine.linePurple {
+.dot.dotPurple {
   background: #a855f7;
+  box-shadow: 0 0 0.5rem rgba(168, 85, 247, 0.5);
 }
 
-.timelineLine.lineGradient {
-  background: linear-gradient(to bottom, #10b981, #a855f7);
-  min-height: 6rem;
+.dot.dotYellow {
+  background: #eab308;
+  box-shadow: 0 0 0.5rem rgba(234, 179, 8, 0.5);
 }
 
-.timelineContent {
+.content {
   flex: 1;
   min-width: 0;
-  padding-top: 0.125rem;
 }
 
 .stationName {
-  font-size: 1rem;
+  margin: 0 0 0.375rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  color: #fff;
-  margin-bottom: 0.25rem;
+  color: #10b981;
 }
 
-.timelineContent .stationName {
-  font-weight: 500;
-  color: #e2e8f0;
+.stationName.nameGreen {
+  color: #10b981;
 }
 
-.timelineItem:first-child .stationName,
-.timelineItem:last-child .stationName {
-  font-weight: 600;
-  color: #fff;
+.stationName.namePurple {
+  color: #a855f7;
 }
 
-.stationLabel {
-  font-size: 0.875rem;
-  color: #94a3b8;
-  margin-bottom: 0.5rem;
+.stationName.nameYellow {
+  color: #eab308;
 }
 
 .stationTime {
-  font-size: 0.875rem;
-  color: #64748b;
+  margin: 0;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  font-weight: 400;
 }
 
 .lineBadge {
@@ -326,12 +291,18 @@
   color: #c084fc;
 }
 
+.lineBadge.badgeYellow {
+  background: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  color: #ede7d9;
+}
+
 /* Interchange box */
 .interchangeBox {
   margin-top: 0.5rem;
   margin-bottom: 0.75rem;
   background: rgba(245, 158, 11, 0.1);
-  border-left: 4px solid #f59e0b;
+  border-left: 4px solid #353131;
   border-radius: 0.5rem;
   padding: 1rem;
 }
@@ -342,7 +313,7 @@
   gap: 0.75rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #fcd34d;
+  color: #e4e4e4;
   margin-bottom: 0.25rem;
 }
 
@@ -545,15 +516,25 @@
     font-size: 2.5rem;
   }
 
-  .timelineItem:not(:last-child) {
-    margin-bottom: 1.5rem;
+  .timelineStep {
+    margin-bottom: 2rem;
   }
 
-  .timelineLine {
-    min-height: 3rem;
+  .timeline {
+    padding-left: 1.5rem;
   }
 
-  .timelineLine.lineGradient {
-    min-height: 4.5rem;
+  .dot {
+    left: -2rem;
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .stationName {
+    font-size: 1.1rem;
+  }
+
+  .stationTime {
+    font-size: 0.875rem;
   }
 }

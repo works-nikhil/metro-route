@@ -6,7 +6,6 @@ import { NextResponse } from "next/server";
  * Verifies Postgres connection. Returns 200 with { ok, time } or 500 with error.
  */
 export async function GET1() {
-  console.log("DATABASE_URL:", process.env.DATABASE_URL);
   if (!process.env.DATABASE_URL) {
     return NextResponse.json(
       { error: "DATABASE_URL is not set" },

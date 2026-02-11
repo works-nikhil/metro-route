@@ -7,7 +7,7 @@ const globalForDb = globalThis;
 const pool =
   globalForDb.poolCopy ??
   new Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.PG_DATABASE_URL,
     ssl: {
       rejectUnauthorized: false,
     },
