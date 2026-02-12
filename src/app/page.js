@@ -413,6 +413,16 @@ function HomeContent() {
           </span>
         </div>
       </main>
+      <footer className="siteFooter">
+        <span>Designed With ❤️ by </span>
+        <a
+          href="https://www.linkedin.com/in/nikhil-bhojwani/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Nikhil Bhojwani
+        </a>
+      </footer>
     </div>
   );
 }
