@@ -1,3 +1,5 @@
+<img width="2291" height="1000" alt="namma-metro" src="https://github.com/user-attachments/assets/a6c202af-f105-49eb-9c49-6f115e9b2653" />
+
 # 🚇 Bangalore Metro Route Finder
 
 A full-stack metro route finder for **Namma Metro (Bangalore)** that computes the fastest route between stations using graph modeling and Dijkstra’s algorithm.
