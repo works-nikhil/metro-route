@@ -135,7 +135,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .linesLabel {
@@ -191,11 +191,12 @@
 
 .timelineStep {
   position: relative;
-  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  min-height: 1.5rem;
 }
 
 .timelineStep:last-child {
-  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .lineSegment {
@@ -203,12 +204,9 @@
   left: -2rem;
   top: 1.25rem;
   width: 2px;
-  height: calc(2.5rem - 0.25rem);
+  height: 100%;
+  bottom: 1.25rem;
   z-index: 1;
-}
-
-.dot {
-  z-index: 2;
 }
 
 .dot {
@@ -221,6 +219,7 @@
   border-radius: 50%;
   box-shadow: 0 0 0.5rem rgba(16, 185, 129, 0.5);
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .dot.dotGreen {
@@ -299,7 +298,7 @@
 
 /* Interchange box */
 .interchangeBox {
-  margin-top: 0.5rem;
+  margin-top: 2rem;
   margin-bottom: 0.75rem;
   background: rgba(245, 158, 11, 0.1);
   border-left: 4px solid #353131;
@@ -335,6 +334,11 @@
 .interchangeText .purple {
   font-weight: 500;
   color: #c084fc;
+}
+
+.interchangeText .yellow {
+  font-weight: 500;
+  color: #eab308;
 }
 
 .interchangeWalk {
@@ -517,7 +521,18 @@
   }
 
   .timelineStep {
-    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    min-height: 1.5rem;
+  }
+
+  .timelineStep:last-child {
+    padding-bottom: 0;
+  }
+
+  .lineSegment {
+    left: -1.75rem;
+    top: 1.125rem;
+    bottom: 1.125rem;
   }
 
   .timeline {
@@ -528,6 +543,7 @@
     left: -2rem;
     width: 0.875rem;
     height: 0.875rem;
+    top: 0.25rem;
   }
 
   .stationName {

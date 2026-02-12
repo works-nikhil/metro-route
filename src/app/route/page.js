@@ -256,6 +256,13 @@ function RoutePageContent() {
   }
 
   const steps = routeData.steps;
+  const getInterchangeLineClass = (lineName) => {
+    const normalized = String(lineName || "").toLowerCase();
+    if (normalized.includes("green")) return styles.emerald;
+    if (normalized.includes("purple")) return styles.purple;
+    if (normalized.includes("yellow")) return styles.yellow;
+    return "";
+  };
 
   return (
     <div className={styles.page}>
@@ -315,7 +322,7 @@ function RoutePageContent() {
               return (
                 <div key={idx} className={styles.timelineStep}>
                   {/* Line segment connecting to next station */}
-                  {!isLast && (
+                  {!isLast && !isInterchange && (
                     <div 
                       className={styles.lineSegment}
                       style={{
@@ -339,7 +346,14 @@ function RoutePageContent() {
                           Change trains here
                         </div>
                         <div className={styles.interchangeText}>
-                          From <span className={styles.emerald}>{station.fromLine}</span> to <span className={styles.purple}>{station.toLine}</span>
+                          From{" "}
+                          <span className={getInterchangeLineClass(station.fromLine)}>
+                            {station.fromLine}
+                          </span>{" "}
+                          to{" "}
+                          <span className={getInterchangeLineClass(station.toLine)}>
+                            {station.toLine}
+                          </span>
                         </div>
                         {station.walk && (
                           <div className={styles.interchangeWalk}>{station.walk}</div>
