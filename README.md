@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚇 Bangalore Metro Route Finder
 
-## Getting Started
+A full-stack metro route finder for **Namma Metro (Bangalore)** that computes the fastest route between stations using graph modeling and Dijkstra’s algorithm.
 
-First, run the development server:
+This project models a real-world transit system with normalized relational schema design, interchange handling, and weighted graph traversal.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔍 Overview
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+This application allows users to:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Select a **source** and **destination** station
+- Compute the **fastest route**
+- Handle **interchange stations**
+- Traverse multiple metro lines
+- Calculate total travel time
+- Return a structured path (station + line + sequence)
 
-## Learn More
+### Currently Supported Lines
 
-To learn more about Next.js, take a look at the following resources:
+- 🟢 Green Line  
+- 🟣 Purple Line  
+- 🟡 Yellow Line  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Operational Interchanges
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Majestic (KGWA)** → Green ↔ Purple  
+- **Rashtriya Vidyalaya Road (RVR)** → Green ↔ Yellow  
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧠 System Design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Graph Modeling
+
+The metro system is modeled as a **weighted directed graph**:
+
+- **Node** → `station_lines.id`
+- **Edge** → `connections`
+- **Weight** → `travel_time_min`
+
+Each physical station can exist on multiple lines:
+
