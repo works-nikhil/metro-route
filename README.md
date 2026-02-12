@@ -216,7 +216,7 @@ This project demonstrates:
 
 ## 🛠️ Setup
 
-Clone repository: git clone https://github.com/your-username/metro-route.git
+Clone repository: git clone https://github.com/works-nikhil/metro-route.git
 
 Configure environment variables:
 
